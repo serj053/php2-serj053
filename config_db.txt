@@ -1,0 +1,5 @@
+
+host=localhost
+user=root
+password=3141
+dbName=dbarticles

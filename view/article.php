@@ -22,16 +22,16 @@
 	<hr>
 	
 	<div id="edit">
-		<a href="edit_article.php?id_art=<?php echo $article[0]['id_art'];?>">
+		<a href="edit_article.php?id_art=<?php echo $article['id_art'];?>">
 		<li>Редактировать</li>
 		</a>|
-		<a href="delete_article.php?id_art=<?php echo $article[0]['id_art'];?>">
+		<a href="delete_article.php?id_art=<?php echo $article['id_art'];?>">
 		<li>Удалить</li>
 		</a>
 	</div>
 	<div id="article_text">
-		<div id="article_title"><strong><?php echo $article[0]['title'];?></strong></div>
-		<div><?php echo $article[0]['content'];?></div>
+		<div id="article_title"><strong><?php echo $article['title'];?></strong></div>
+		<div><?php echo $article['content'];?></div>
 	
 	</div>
 

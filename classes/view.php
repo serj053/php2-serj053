@@ -41,9 +41,8 @@ class View extends Storage{
 		//echo "Объект создан.";
 	}
 		
-		public function display($template){		
+		public function display($template){	
 			foreach($this as $k=>$v){
-				//echo $k.' - '.$v.'<br>';
 				$$k = $v;	
 			}		
 			ob_start();

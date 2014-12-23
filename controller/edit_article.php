@@ -1,5 +1,17 @@
 <?php 
-	require_once'../model/articles.php';
+	require'NewsController.php';
+	$controller = new NewsController;
+
+	$controller->actionEdit();
+	
+	
+	
+	//$controller->action('All');
+	
+	//header("Location:articles.php");
+	
+	/*
+	require_once'../model/News.php';
 	$id_art = $_GET['id_art'];
 		$art = new News;
 		$row = $art->get_One($id_art);
@@ -11,4 +23,5 @@
 	}
 
 	include '../view/edit_article.php';
+	*/
 ?>

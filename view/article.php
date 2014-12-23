@@ -1,5 +1,5 @@
 <?php 
-/*точка входа для пользователя*/
+/*точка входа для пользователя*/	;
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
@@ -31,7 +31,7 @@
 	</div>
 	<div id="article_text">
 		<div id="article_title"><strong><?php echo $article['title'];?></strong></div>
-		<div><?php echo $article['content'];?></div>
+		<div><?php echo $article['content'] ;?></div>
 	
 	</div>
 

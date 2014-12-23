@@ -20,10 +20,10 @@
 	</div>
 	<hr>
 	<div>
-		<form action="edit_article.php?id_art=<?php echo $row['id_art'] ?>" method="post" >
+		<form action="edit_article.php?id_art=<?php echo $article['id_art'] ?>" method="post" >
 			Название статьи:
-			<input type="text" value="<?php echo $row['title']?>" name="title" id="new_title"/><br>
-			<textarea name="content"><?php echo $row['content']?> </textarea><br>
+			<input type="text" value="<?php echo $article['title']?>" name="title" id="new_title"/><br>
+			<textarea name="content"><?php echo $article['content']?> </textarea><br>
 			<input type="submit" value="Запомнить"/>
         </form>		
 	</div>

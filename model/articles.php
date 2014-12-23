@@ -1,56 +1,45 @@
 <?php 
-/**/
-	include'../startup/db.php';
-	
-	function articles_getAll(){
-		$db = new DB();
-		return $db->select_all("SELECT * FROM articles");
-	}
-	
-	function article_getOne($id_art){
-		$db = new DB();
-		return $db->select_one("SELECT * FROM articles WHERE id_art = $id_art");
-	}
-	
-	function new_article($title, $content, $id_user=1){
-		$title = trim($title);
-		$content = trim($content);
-		$db = new DB();
-		$query = "INSERT INTO articles (id_user,title,content,created_date) 
-									VALUES('$id_user','%s','%s', now())";
-									
-		$query = sprintf($query, mysql_real_escape_string($title),
-								 mysql_real_escape_string($content));	
-								 
-			
-			 return $db->insert($query);		
-	}
-	
-	function up_date($title, $content, $id_art){
-		$title = trim($title);
-		$content = trim($content);
+include'../startup/db.php';
 
-		$db = new DB();
-		$query = "UPDATE articles SET title = '$title',
-									  content ='$content'
-						WHERE id_art = '$id_art'";
-
-		return 	$db->update($query);	;
-	}
-	
-	function delete_article($id_art){
-		$db = new DB();
+	interface Articles{
+				
+		public function get_All();
+		public function get_One($id_art);
+		public function insert($title, $content);
+		public function update($id_art,$title, $content);
+		public function delete($id_art);
 		
-		$query="DELETE FROM articles WHERE id_art = '$id_art'";
-		return $db->delete($query);		
 	}
 	
-	
-	
-	
-	
-	
-	
-	
+	class News implements Articles{
+		
+		function get_All(){
+			$db = new DB();
+		return $db->select_all("SELECT * FROM articles");
+		}
+		
+		function get_One($id_art){
+			$db = new DB();
+		return $db->select_one("SELECT * FROM articles WHERE id_art = '$id_art'");
+		}
+		
+		function insert($title, $content){
+			$db = new DB();
+		return $db->insert("INSERT INTO articles ( title, content, created_date)
+					VALUES('$title','$content', now())");
+		}
+		
+		function update($id_art,$title, $content){
+			$db = new DB();
+		return $db->update("UPDATE articles SET title = '$title',
+		content = '$content' WHERE id_art = '$id_art'");
+		}
+		
+		function delete($id_art){
+			$db = new DB();
+		return $db->delete("DELETE FROM articles WHERE id_art = '$id_art'");
+		}	
+						
+	}
 
 ?>

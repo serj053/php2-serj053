@@ -11,18 +11,18 @@ DB->delete($sql);
 */	
 	public static $db_link = null;
 	
-		function __construct( $config = 'config_db.txt'){
+		function __construct( $config = 'config.php'){
 			
 		
 			if(DB::$db_link == null){
-			 $config = parse_ini_file('../'.$config);
-			 $dbName = $config['dbName'];
-			 $this->db_link = mysql_connect(
-								  $config['host'],
-								  $config['user'],
-								  $config['password']) or die('No connect with data base'); 
+			 $config = require_once'../config.php';
+			 $dbName = $config[0]['dbName'];
+			 DB::$db_link = mysql_connect(
+								  $config[0]['hostname'],
+								  $config[0]['user'],
+								  $config[0]['password']) or die('No connect with data base'); 
 								  
-			if(!$this->db_link) die (mysql_error());					  
+			if(!DB::$db_link) die (mysql_error());					  
 			
 			mysql_query('SET NAMES utf8');
 			mysql_select_db($dbName) or die('No data base');

@@ -12,7 +12,7 @@
 	<div id="menu">
 		<ul>
 			<li><a href="../index.php">Главная </a></li>|
-			<li><a href="../controller/articles.php">Список статей </a></li>|
+			<li><a href="../controller/index.php?r=news/all">Список статей </a></li>|
 			<li><a href="">Галерея </a></li>|
 			<li><a href="">А если подумать </a></li>|
 			<li><a href="">Контакты </a></li>
@@ -20,7 +20,7 @@
 	</div>
 	<hr>
 	<div>
-		<form action="new_article.php" method="post" name="">
+		<form action="index.php?r=news/new" method="post" name="">
 			Название статьи:
 			<input type="text" value="<?php echo $article['title']?>" name="title" id="new_title"/><br>
 			<textarea name="content"><?php echo $article['content']?> </textarea><br>

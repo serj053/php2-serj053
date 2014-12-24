@@ -13,7 +13,7 @@
 	<div id="menu">
 		<ul>
 			<li><a href="index.php">Главная </a></li>|
-			<li><a href="articles.php">Список статей </a></li>|
+			<li><a href="index.php?r=news/all">Список статей </a></li>|
 			<li><a href="">Галерея </a></li>|
 			<li><a href="">А если подумать </a></li>|
 			<li><a href="">Контакты </a></li>

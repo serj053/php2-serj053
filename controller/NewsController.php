@@ -58,7 +58,8 @@ class NewsController extends AController {
 	public function actionDelete(){
 		$id_art = $_GET['id_art'];
 		self::$news->delete($id_art);
-		
+		self::$view->articles = self::$news->get_All();
+		echo self::$view->display('../view/articles.php');
 	}
 	
 	

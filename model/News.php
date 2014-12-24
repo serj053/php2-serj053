@@ -32,8 +32,8 @@ interface Articles{
 		
 		function update($id_art,$title, $content){
 			$db = new DB();
-		return $db->update('UPDATE articles SET title = '.$title.',
-		content = '.$content.' WHERE id_art = '.$id_art);
+		return $db->update("UPDATE articles SET title = '$title',
+		content = '$content' WHERE id_art = '$id_art'");
 		}
 		
 		function delete($id_art){

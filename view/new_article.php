@@ -22,8 +22,8 @@
 	<div>
 		<form action="new_article.php" method="post" name="">
 			Название статьи:
-			<input type="text" value="<?php echo $title?>" name="title" id="new_title"/><br>
-			<textarea name="content"><?php echo $content?> </textarea><br>
+			<input type="text" value="<?php echo $article['title']?>" name="title" id="new_title"/><br>
+			<textarea name="content"><?php echo $article['content']?> </textarea><br>
 			<input type="submit" value="Запомнить"/>
         </form>		
 	</div>

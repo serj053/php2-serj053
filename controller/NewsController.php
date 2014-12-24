@@ -1,9 +1,9 @@
 <?php 
-require'../startup/boot.php';
+require_once'../startup/boot.php';
 require'AController.php';
 class NewsController extends AController {
-	public static $news = null;
-	public static $view = null;
+	private static $news = null;
+	private static $view = null;
 	function __construct(){
 		if(self::$news == null)
 			self::$news = new News;
@@ -14,7 +14,7 @@ class NewsController extends AController {
 	
 	public function actionAll(){  
 	
-		self::$view->articles = self::$news->get_all();
+		self::$view->articles = self::$news->get_All();
 		echo self::$view->display('../view/articles.php');
 	}
 	
@@ -24,15 +24,20 @@ class NewsController extends AController {
 		echo self::$view->display('../view/article.php');
 	}
 	
-	public function actionNew(){
+	public function actionControl(){
 		$title = isset($_POST['title'])?$_POST['title']:'';
 		$content = isset($_POST['content'])?$_POST['content']:'';
+	}
+	
+	public function actionNew(){
+		$title = isset($_POST['title'])?$_POST['title']:'';
+		$content = isset($_POST['content'])?$_POST['content']:'';			
 		if($title != '' && $content != ''){
-		$id_art = self::$news->insert($title, $content);
-		self::$view->article = self::$news->get_All();
-		self::$view->display('../view/articles.php');
+		$id_art = self::$news->insert($title, $content);	
+		self::$view->articles = self::$news->get_All();
+		echo self::$view->display('../view/articles.php');
 		}else{
-		self::$view->article = array($title,$content);
+		self::$view->article = array('title'=>'','content'=>'');
 		echo self::$view->display('../view/new_article.php');
 		}
 	}

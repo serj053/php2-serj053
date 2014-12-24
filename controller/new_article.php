@@ -1,11 +1,11 @@
 <?php 
-/*
+
 	require'NewsController.php';
 	$controller = new NewsController;
 
 	$controller->actionNew();
-*/
 
+/*
 
 	require_once'../model/News.php';
 	
@@ -25,5 +25,7 @@
 	
 	
 	include '../view/new_article.php';
+	
+*/	
 	
 ?>

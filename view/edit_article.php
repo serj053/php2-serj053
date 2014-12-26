@@ -22,8 +22,8 @@
 	<div>
 		<form action="index.php?r=news/edit&id_art=<?php echo $article['id_art'] ?>" method="post" >
 			Название статьи:
-			<input type="text" value="<?php echo $article['title']?>" name="title" id="new_title"/><br>
-			<textarea name="content"><?php echo $article['content']?> </textarea><br>
+			<input type="text" value="<?php echo $article[0]->title;?>" name="title" id="new_title"/><br>
+			<textarea name="content"><?php echo $article[0]->content;?> </textarea><br>
 			<input type="submit" value="Запомнить"/>
         </form>		
 	</div>

@@ -1,46 +1,28 @@
 <?php 
-
-require '../startup/db.php';
-interface Articles{
-				
-		public function get_All();
-		public function get_One($id_art);
-		public function insert($title, $content);
-		public function update($id_art,$title, $content);
-		public function delete($id_art);
+	require'Model.php';
+	require'DBConnect.php';
+	
+	class News extends Model{
+		static  $table = 'articles';
 		
+		static public function findAll(){
+			return DBConnect::query_all();
+		}
+		
+		static public function findByPk($id){
+			return DBConnect::query_by_id($id);
+		}
+		
+		public function update($id,$title,$content){
+			return DBConnect::query_update($id,$title,$content,$title);
+		}
+		
+		public function insert($title,$content){
+			return DBConnect::query_insert($title,$content);
+		}
 	}
-
-
-	class News implements Articles{
-		
-		function get_All(){
-			$db = new DB();
-		return $db->select_all("SELECT * FROM articles");
-		}
-		
-		function get_One($id_art){
-			$db = new DB();
-		return $db->select_one('SELECT * FROM articles WHERE id_art = '.$id_art);
-		}
-		
-		function insert($title, $content){
-			$db = new DB();
-		return $db->insert("INSERT INTO articles ( title, content, created_date)
-					VALUES('$title','$content', now())");
-		}
-		
-		function update($id_art,$title, $content){
-			$db = new DB();
-		return $db->update("UPDATE articles SET title = '$title',
-		content = '$content' WHERE id_art = '$id_art'");
-		}
-		
-		function delete($id_art){
-			$db = new DB();
-		return $db->delete('DELETE FROM articles WHERE id_art = '.$id_art);
-		}	
-						
-	}
+	
+    //$t = News::findByPk(4);
+	//print_r($t);
 
 ?>

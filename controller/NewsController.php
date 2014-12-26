@@ -14,27 +14,27 @@ class NewsController extends AController {
 	
 	public function actionAll(){  
 	
-		self::$view->articles = self::$news->get_All();
+		self::$view->articles = News::findAll();
 		echo self::$view->display('../view/articles.php');
 	}
 	
 	public function actionOne(){
 		$id_art = $_GET['id_art'];
-		self::$view->article = self::$news->get_one($id_art);
+		self::$view->article = News::findByPk($id_art);
 		echo self::$view->display('../view/article.php');
 	}
-	
+/*	
 	public function actionControl(){
 		$title = isset($_POST['title'])?$_POST['title']:'';
 		$content = isset($_POST['content'])?$_POST['content']:'';
 	}
-	
+*/	
 	public function actionNew(){
 		$title = isset($_POST['title'])?$_POST['title']:'';
 		$content = isset($_POST['content'])?$_POST['content']:'';			
 		if($title != '' && $content != ''){
 		$id_art = self::$news->insert($title, $content);	
-		self::$view->articles = self::$news->get_All();
+		self::$view->articles = News::findAll();
 		echo self::$view->display('../view/articles.php');
 		}else{
 		self::$view->article = array('title'=>'','content'=>'');
@@ -45,9 +45,9 @@ class NewsController extends AController {
 	public function actionEdit(){
 	
 		$id_art = $_GET['id_art'];
-		self::$view->article = self::$news->get_One($id_art);	
+		self::$view->article = News::findByPk($id_art);	
 		if(@$_POST['title'] && $_POST['content']){	
-		$res = self::$news->update($id_art,  $_POST['title'], $_POST['content']);
+		$res = News::update($id_art,  $_POST['title'], $_POST['content']);
 		self::$view->article = self::$news->get_One($id_art);
 		echo self::$view->display('../view/edit_article.php');
 		}else{

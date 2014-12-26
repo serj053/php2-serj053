@@ -26,8 +26,8 @@
 		</li></ul>
 		<ol>
 			<?php foreach($articles as $article){?>
-				<li><a href="index.php?r=news/one&id_art=<?php echo $article['id_art'];?>">
-				<?php echo $article['title'];?>
+				<li><a href="index.php?r=news/one&id_art=<?php echo $article->id_art;?>">
+				<?php echo $article->title;?>
 				</a></li>					
 			<?php }?>
 		</ol>

@@ -20,7 +20,7 @@
 	</div>
 	<hr>
 	<div>
-		<form action="index.php?r=news/edit&id_art=<?php echo $article['id_art'] ?>" method="post" >
+		<form action="index.php?r=news/edit&id_art=<?php echo $article[0]->id_art; ?>" method="post" >
 			Название статьи:
 			<input type="text" value="<?php echo $article[0]->title;?>" name="title" id="new_title"/><br>
 			<textarea name="content"><?php echo $article[0]->content;?> </textarea><br>

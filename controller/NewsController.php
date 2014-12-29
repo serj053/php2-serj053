@@ -12,15 +12,14 @@ class NewsController extends AController {
 			
 	}
 	
-	public function actionAll(){  
-	
-		self::$view->articles = News::findAll();
+	public function actionAll(){
+		self::$view->articles = self::$news->getAllArticles();
 		echo self::$view->display('../view/articles.php');
 	}
 	
 	public function actionOne(){
 		$id_art = $_GET['id_art'];
-		self::$view->article = News::findByPk($id_art);
+		self::$view->article = self::$news->getOneArticle($id_art);
 		echo self::$view->display('../view/article.php');
 	}
 /*	
@@ -33,8 +32,10 @@ class NewsController extends AController {
 		$title = isset($_POST['title'])?$_POST['title']:'';
 		$content = isset($_POST['content'])?$_POST['content']:'';			
 		if($title != '' && $content != ''){
-		$id_art = self::$news->insert($title, $content);	
-		self::$view->articles = News::findAll();
+        self::$news->title = $title;
+        self::$news->content = $content;
+		$id_art = self::$news->newArticle();
+		self::$view->articles = self::$news->getAllArticles();
 		echo self::$view->display('../view/articles.php');
 		}else{
 		self::$view->article = array('title'=>'','content'=>'');
@@ -45,10 +46,18 @@ class NewsController extends AController {
 	public function actionEdit(){
 	
 		$id_art = $_GET['id_art'];
-		self::$view->article = News::findByPk($id_art);	
-		if(@$_POST['title'] && $_POST['content']){	
-		$res = News::update($id_art,  $_POST['title'], $_POST['content']);
-		self::$view->article = self::$news->get_One($id_art);
+
+		self::$view->article = News::findByPk($id_art);
+//var_dump(News::findByPk($id_art));
+		if(@$_POST['title'] && $_POST['content']){
+        self::$news->title = $_POST['title'];
+        self::$news->content = $_POST['content'];
+  //echo 'id_srt = '.($id_art);
+        self::$news->id_art = $id_art;
+        self::$news->updateArticle($id_art);
+		self::$view->article = self::$news->getOneArticle($id_art);
+
+//var_dump(self::$view->article);
 		echo self::$view->display('../view/edit_article.php');
 		}else{
 			echo self::$view->display('../view/edit_article.php');
@@ -57,8 +66,9 @@ class NewsController extends AController {
 	
 	public function actionDelete(){
 		$id_art = $_GET['id_art'];
-		self::$news->delete($id_art);
-		self::$view->articles = self::$news->get_All();
+        self::$news->id_art = $id_art;
+		self::$news->deleteArticle();
+		self::$view->articles = self::$news->getAllArticles();
 		echo self::$view->display('../view/articles.php');
 	}
 	
